@@ -1,0 +1,54 @@
+# app.py
+from flask import Flask, render_template, request, redirect
+import sqlite3
+
+app = Flask(__name__)
+
+# connect to database
+def get_db():
+    return sqlite3.connect("students.db")
+
+# create table (runs once)
+with get_db() as con:
+    con.execute(
+        """CREATE TABLE IF NOT EXISTS students
+                ( id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT,
+                    age INTEGER,
+                    course TEXT )
+        """
+    )
+
+
+@app.route("/")
+def index():
+    con = get_db()
+    students = con.execute("SELECT * FROM students").fetchall()
+    return render_template("index.html", students=students)
+
+@app.route("/add", methods=["GET", "POST"])
+def add_student():
+    if request.method == "POST":
+        name = request.form["name"]
+        age = request.form["age"]
+        course = request.form["course"]
+
+        con = get_db()
+        con.execute(
+            "INSERT INTO students (name, age, course) VALUES (?, ?, ?)",(name, age, course)
+        )
+        con.commit()
+        return redirect("/")
+
+    return render_template("add.html")
+
+@app.route("/delete/<int:id>")
+def delete_student(id):
+    con = get_db()
+    con.execute("DELETE FROM students WHERE id = ?", (id,))
+    con.commit()
+    return redirect("/")
+
+if __name__ == "__main__":
+    app.run()
+
