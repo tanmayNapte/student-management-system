@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
-    <style>
-        * {
+ * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -179,37 +172,3 @@
                 justify-content: center;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="edit-container">
-        <h2>Add Student</h2>
-
-        <form method="post">
-            <div class="form-group">
-                <h3>Name</h3>
-                <div class="name-row">
-                    <input name="first_name" placeholder="First name" required>
-                    <input name="middle_name" placeholder="Middle name">
-                    <input name="last_name" placeholder="Last name" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <h3>Age</h3>
-                <input name="age" type="number" placeholder="Age" required min="1" max="150">
-            </div>
-
-            <div class="form-group">
-                <h3>Course</h3>
-                <input name="course" placeholder="Course" required>
-            </div>
-
-            <div class="edit-footer">
-                <a href="/">Back</a>
-                <button type="submit">Add Student</button>
-            </div>
-        </form>
-    </div>
-</body>
-</html>

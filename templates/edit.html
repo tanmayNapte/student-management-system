@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='style-edit.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+    <body>
+       <div class="edit-container">
+    <h2>Edit Student</h2>
+
+    <form method="post">
+
+        <h3>Name</h3>
+        <div class="name-row">
+            <input name="first_name" placeholder="First name" value="{{ student[1].split(' ')[0] }}">
+            <input name="middle_name" placeholder="Middle name" value="{{ student[1].split(' ')[1] }}">
+            <input name="last_name" placeholder="Last name" value="{{ student[1].split(' ')[2] }}">
+        </div>
+
+        <h3>Age</h3>
+        <input name="age" placeholder="Age" value="{{ student[2] }}">
+
+        <h3>Course</h3>
+        <input name="course" placeholder="Course" value="{{ student[3] }}">
+
+        <!-- Footer -->
+        <div class="edit-footer">
+            <a href="/">Back</a>
+            <button>Update</button>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>
